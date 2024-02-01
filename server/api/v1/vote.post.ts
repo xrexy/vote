@@ -79,10 +79,12 @@ export default defineEventHandler(async (event) => {
 
     s.on("error", (err) => {
       console.log(err);
+      s.end()
       reject("Socket error");
     });
 
     s.setTimeout(2000, () => {
+      s.end()
       reject("Socket timed out");
     });
   });
@@ -113,6 +115,8 @@ export default defineEventHandler(async (event) => {
       });
     }
   );
+
+  socket.end()
 
   if (response.status === "error") {
     throw createError({ message: "Couldn't send vote", statusCode: 400 });
