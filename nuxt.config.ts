@@ -1,17 +1,5 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
-  devtools: { enabled: true },
-  googleFonts: {
-    families: {
-      Montserrat: [300, 500, 700],
-    },
-    display: "swap",
-  },
-  shadcn: {
-    prefix: '',
-    componentDir: './components/ui'
-  },
-  tailwindcss: { viewer: false },
   modules: [
     "@nuxtjs/eslint-module",
     "@vueuse/nuxt",
@@ -20,4 +8,18 @@ export default defineNuxtConfig({
     'shadcn-nuxt',
     '@nuxtjs/tailwindcss'
   ],
+  devtools: { enabled: true },
+  googleFonts: {
+    families: {
+      'DM+Sans': true,
+      'DM+Mono': true,
+      "DM+Serif+Display": true,
+    },
+    display: "swap",
+  },
+  shadcn: {
+    prefix: '',
+    componentDir: './components/ui'
+  },
+  tailwindcss: { viewer: false },
 });

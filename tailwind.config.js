@@ -14,6 +14,12 @@ module.exports = {
       },
     },
     extend: {
+      fontFamily: {
+        // managed by @nuxtjs/google-fonts"
+        sans: ['DM Sans', 'sans-serif'],
+        mono: ['DM Mono', 'monospace'],
+        serif: ['DM Serif Display', 'serif'],
+      },
       colors: {
         border: "hsl(var(--border))",
         input: "hsl(var(--input))",
