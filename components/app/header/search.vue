@@ -1,5 +1,5 @@
 <template>
-  <form class="w-[24rem] duration-300 flex items-center">
+  <form class="w-[24rem] h-full duration-300 flex items-center">
     <!-- TODO light theme -->
     <label
       for="server-search"

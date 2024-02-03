@@ -1,13 +1,17 @@
 <template>
-  <div class="flex flex-col items-center justify-center">
-    <Button
-      class="px-4"
-      variant="outline"
-      size="sm"
-    > 
-      ADD SERVER
-    </Button>
-  </div>
+  <Button
+    variant="outline"
+    title="Add Server"
+    class="px-4 h-full gap-2"
+  >
+    <Icon
+      name="material-symbols:add-rounded"
+      width="24"
+      height="24"
+      class="text-foreground/50"
+    />
+    Add Server
+  </Button>
 </template>
 
 <script lang="ts" setup>
