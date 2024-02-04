@@ -1,3 +1,9 @@
+const REQUIRED_ENV_VARIABLES = ['REDIS_URL'] as const;
+const missingEnvVariables = REQUIRED_ENV_VARIABLES.filter((env) => !process.env[env]);
+if(missingEnvVariables.length > 0) {
+  throw new Error(`Missing required environment variables: ${missingEnvVariables.join(", ")}`);
+}
+
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
   modules: [
@@ -24,4 +30,9 @@ export default defineNuxtConfig({
     componentDir: './components/ui'
   },
   tailwindcss: { viewer: false },
+  runtimeConfig: {
+    redis: {
+      url: process.env.REDIS_URL,
+    }
+  }
 });
