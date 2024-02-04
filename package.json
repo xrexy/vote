@@ -7,7 +7,11 @@
     "dev": "nuxt dev",
     "generate": "nuxt generate",
     "preview": "nuxt preview",
-    "postinstall": "nuxt prepare"
+    "postinstall": "nuxt prepare",
+    "db:generate": "drizzle-kit generate:pg",
+    "db:push": "drizzle-kit push:pg",
+    "db:introspect": "drizzle-kit introspect:pg",
+    "db:studio": "drizzle-kit studio"
   },
   "dependencies": {
     "@lucia-auth/adapter-drizzle": "^1.0.0",
@@ -33,6 +37,7 @@
     "@pinia/nuxt": "^0.5.1",
     "@types/pg": "^8.11.0",
     "@vueuse/nuxt": "^10.7.2",
+    "drizzle-kit": "^0.20.14",
     "nuxt": "^3.10.0",
     "nuxt-icon": "^0.6.8",
     "shadcn-nuxt": "^0.8.7",

@@ -50,7 +50,11 @@ function createMessage(header: string, vote: Payload["vote"], token: string) {
   return messageBuffer;
 }
 
-export default defineEventHandler(async (event) => {
+export default eventHandler(async (event) => {
+  if(!event.context.user) {
+    throw createError({ message: "Unauthorized", statusCode: 401 });
+  }
+
   const body = await readBody(event);
 
   const v = payloadSchema.safeParse(body);

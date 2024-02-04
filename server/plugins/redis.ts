@@ -1,6 +1,6 @@
 import { createClient } from "redis";
 
-export type RedisClient = Awaited<ReturnType<typeof makeClient>>
+type RedisClient = Awaited<ReturnType<typeof makeClient>>
 
 function makeClient(url: string) {
   const c = createClient({url})
@@ -25,3 +25,10 @@ export default defineNitroPlugin(async (nitro) => {
     event.context.$redis = client;
   })
 });
+
+
+declare module "h3" {
+	interface H3EventContext {
+    redis: RedisClient
+	}
+}

@@ -1,18 +1,17 @@
 <template>
-  <body>
+  <main>
+    <Sonner
+      position="bottom-center"
+      theme="dark"
+      rich-colors
+    />
+
     <AppHeader />
 
-    <main>
-      <Sonner
-        position="bottom-center"
-        theme="dark"
-        rich-colors
-      />
-
-      <NuxtPage />
-    </main>
-    <AppFooter />
-  </body>
+    <NuxtPage />
+    
+    <!-- <AppFooter /> -->
+  </main>
 </template>
 
 <script setup lang="ts">

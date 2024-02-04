@@ -1,17 +1,21 @@
 import { Lucia } from "lucia";
-import { webcrypto } from "node:crypto";
+
+interface DatabaseUserAttributes {
+	username: string;
+}
 
 export const lucia = new Lucia(luciaDbAdapter, {
   sessionCookie: {
     attributes: { secure: !process.dev },
   },
+  getUserAttributes: (attr) => ({
+    username: attr.username,
+  })
 });
 
 declare module "lucia" {
   interface Register {
     Lucia: typeof lucia;
+    DatabaseUserAttributes: DatabaseUserAttributes;
   }
 }
-
-globalThis.crypto = webcrypto as Crypto;
-
