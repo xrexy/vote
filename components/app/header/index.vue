@@ -2,16 +2,22 @@
   <header
     class="relative border-b border-border flex flex-col md:flex-row justify-between items-center h-header md:py-4 md:px-8 z-10"
   >
-    <div class="md:hidden">
-      <DropdownMenu>
-        <DropdownMenuTrigger>
-          <Icon
-            size="1.5rem"
-            name="mdi:hamburger-menu"
-          />
-        </DropdownMenuTrigger>
-      </DropdownMenu>
-    </div>
+    <ClientOnly>
+      <div class="block md:hidden">
+        <DropdownMenu>
+          <DropdownMenuTrigger>Open</DropdownMenuTrigger>
+          <DropdownMenuContent>
+            <DropdownMenuLabel>My Account</DropdownMenuLabel>
+            <DropdownMenuSeparator />
+            <DropdownMenuItem>Profile</DropdownMenuItem>
+            <DropdownMenuItem>Billing</DropdownMenuItem>
+            <DropdownMenuItem>Team</DropdownMenuItem>
+            <DropdownMenuItem>Subscription</DropdownMenuItem>
+          </DropdownMenuContent>
+        </DropdownMenu>
+      </div>
+    </ClientOnly>
+
     <div class="flex flex-col md:flex-row items-center gap-1">
       <NuxtLink to="/">
         <AppLogo />
