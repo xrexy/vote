@@ -3,7 +3,13 @@ const protectedRoutes: RegExp[] = [
 ]
 
 export default defineNuxtRouteMiddleware(async (to) => {
-  const user = await $fetch("/api/auth/me");
+  let user: User;
+  try {
+    user = await $fetch("/api/auth/me");
+  } catch {
+    console.error("Failed to fetch user");
+  }
+
   useUser().value = user;
 
   if (!user && protectedRoutes.some(exp => exp.test(to.path))) {
