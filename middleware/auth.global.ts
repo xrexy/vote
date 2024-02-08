@@ -1,9 +1,11 @@
-const protectedRoutes: RegExp[] = [
-  new RegExp('/studio/.*')
+import type { User } from "lucia";
+
+const protectedRoutes: (RegExp | string)[] = [
+  new RegExp('/studio/.*'),
 ]
 
 export default defineNuxtRouteMiddleware(async (to) => {
-  let user: User;
+  let user: User | null = null;
   try {
     user = await $fetch("/api/auth/me");
   } catch {
@@ -12,7 +14,7 @@ export default defineNuxtRouteMiddleware(async (to) => {
 
   useUser().value = user;
 
-  if (!user && protectedRoutes.some(exp => exp.test(to.path))) {
+  if (!user && protectedRoutes.some(exp => typeof exp === 'string' ? exp === to.path : exp.test(to.path))) {
     return navigateTo("/login");
   }
 });
