@@ -6,14 +6,12 @@
       rich-colors
       :duration="2500"
     />
-
+    
     <AppHeader />
 
     <NuxtLayout>
       <NuxtPage />
     </NuxtLayout>
-    
-    <!-- <AppFooter /> -->
   </main>
 </template>
 
