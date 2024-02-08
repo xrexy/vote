@@ -4,6 +4,7 @@ const animate = require("tailwindcss-animate")
 module.exports = {
   darkMode: ["class"],
   safelist: ["dark"],
+  content: ['formkit.theme.ts'],
   
   theme: {
     container: {
