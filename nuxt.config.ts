@@ -10,6 +10,9 @@ if (missingEnvVariables.length > 0) {
 
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
+  app: {
+    pageTransition: { name: 'page', mode: 'out-in' }
+  },
   modules: [
     "@nuxtjs/eslint-module",
     "@vueuse/nuxt",
@@ -19,8 +22,10 @@ export default defineNuxtConfig({
     "@nuxtjs/tailwindcss",
     "@pinia/nuxt",
     "nuxt-icon",
+    "@formkit/nuxt",
   ],
   devtools: { enabled: true },
+  formkit: { autoImport: true },
   googleFonts: {
     families: {
       "DM+Sans": "400..1000",
@@ -39,3 +44,4 @@ export default defineNuxtConfig({
     db: { connectionString: process.env.DB_CONNECTION_STRING },
   },
 });
+

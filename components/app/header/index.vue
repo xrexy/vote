@@ -1,19 +1,32 @@
 <template>
   <header
-    class="relative border-b border-border flex flex-row justify-between items-center rounded-md h-[4.5rem] py-4 px-8">
-    <div class="flex flex-row items-center gap-1">
+    class="relative border-b border-border flex flex-col md:flex-row justify-between items-center h-header md:py-4 md:px-8 z-10"
+  >
+    <div class="md:hidden">
+      <DropdownMenu>
+        <DropdownMenuTrigger>
+          <Icon
+            size="1.5rem"
+            name="mdi:hamburger-menu"
+          />
+        </DropdownMenuTrigger>
+      </DropdownMenu>
+    </div>
+    <div class="flex flex-col md:flex-row items-center gap-1">
       <NuxtLink to="/">
         <AppLogo />
       </NuxtLink>
 
-      <NuxtLink v-if="isStudio" class="font-black font-mono text-lg select-none" to="/studio">
+      <NuxtLink
+        v-if="isStudio"
+        class="font-black font-mono text-lg select-none"
+        to="/studio"
+      >
         Studio
       </NuxtLink>
     </div>
 
-
-
-    <AppHeaderSearch class="absolute left-[50%] -translate-x-[50%]" />
+    <AppHeaderSearch class="hidden md: absolute left-[50%] -translate-x-[50%]" />
     <div class="flex items-center gap-4 h-full">
       <AppHeaderActions />
       <UserAvatar />

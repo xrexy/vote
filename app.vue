@@ -9,7 +9,9 @@
 
     <AppHeader />
 
-    <NuxtPage />
+    <NuxtLayout>
+      <NuxtPage />
+    </NuxtLayout>
     
     <!-- <AppFooter /> -->
   </main>
@@ -18,3 +20,13 @@
 <script setup lang="ts">
 useHead({ htmlAttrs: { class: 'dark' }})
 </script>
+
+<style>
+::-moz-selection {
+  @apply bg-emerald-700/25 text-emerald-400;
+}
+
+::selection {
+  @apply bg-emerald-700/25 text-emerald-400;
+}
+</style>
