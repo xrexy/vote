@@ -14,8 +14,13 @@ export default defineNuxtRouteMiddleware(async (to) => {
 
   useUser().value = user;
 
-  if (!user && protectedRoutes.some(exp => typeof exp === 'string' ? exp === to.path : exp.test(to.path))) {
-    return navigateTo("/login");
+  if(!user) {
+    const next = to.path;
+    const pathIsProtected = protectedRoutes.some(exp => typeof exp === 'string' ? exp === next : exp.test(next));
+
+    if(pathIsProtected) {
+      return navigateTo("/login");
+    }
   }
 });
 

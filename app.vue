@@ -4,6 +4,7 @@
       position="bottom-center"
       theme="dark"
       rich-colors
+      :duration="2500"
     />
 
     <AppHeader />
