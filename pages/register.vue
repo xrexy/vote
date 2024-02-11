@@ -66,15 +66,8 @@ const { execute: signup } = useFetch("/api/auth/signup", {
             Already have an account?
           </NuxtLink>
         </div>
-      
-        <div class="flex items-center gap-2 w-full">
-          <Separator class="flex-1" />
-          <p class="text-border brightness-150 pb-[4px] select-none">
-            ...or
-          </p>
-          <Separator class="flex-1" />
-        </div>
 
+        <SeparatorWithText text="or..." />
 
         <Button
           class="w-full font-black brightness-125"
