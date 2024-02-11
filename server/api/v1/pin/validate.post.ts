@@ -7,10 +7,7 @@ const schema = z.object({
     .refine((v) => !v.includes(" "), {
       message: "Username cannot contain spaces",
     }),
-  pin: z
-    .number()
-    .min(6, "Pin must be 6 characters long")
-    .max(6, "Pin must be 6 characters long"),
+  pin: z.string().length(6, "Pin must be 6 characters long"),
 });
 
 export default eventHandler(async (event) => {
@@ -18,7 +15,7 @@ export default eventHandler(async (event) => {
   if (!v.success) {
     throw createError({
       status: 400,
-      message: "Invalid request body",
+      message: v.error.issues[0].message,
     });
   }
   const body = v.data;
@@ -29,11 +26,11 @@ export default eventHandler(async (event) => {
       getPinKey(body.username)
     )) as PinEntry;
 
-    return { res: data?.pin === body.pin.toString() };
+    return { valid: data?.pin === body.pin.toString() };
   } catch (err) {
     console.log(body, "pin validate error\n", err);
   }
 
-  return { res: false };
+  return { valid: false };
 });
 

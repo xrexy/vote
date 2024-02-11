@@ -22,7 +22,7 @@ export default defineNitroPlugin(async (nitro) => {
   // });
 
   nitro.hooks.hook('request', (event) => {
-    event.context.$redis = client;
+    event.context.redis = client;
   })
 });
 

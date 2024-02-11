@@ -42,8 +42,9 @@ export default eventHandler(async (event) => {
   const dragonfly = event.context.redis;
   try {
     await dragonfly.json.set(key, "$", data);
-    await dragonfly.expire(key, 60 * 10, "LT");
+    await dragonfly.expire(key, 60 * 10, "GT");
   } catch (error) {
+    console.log(error)
     throw createError("Internat Server Error");
   }
 
