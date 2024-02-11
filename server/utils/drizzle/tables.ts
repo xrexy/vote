@@ -4,6 +4,8 @@ export const userTable = pgTable("user", {
   id: text("id").primaryKey(),
   username: text('username').unique().notNull(),
   password: text('hashed_password').notNull(),
+
+  uuid: text('mc_uuid').unique() // uuid is only set when the user links his account
 });
 
 export const sessionTable = pgTable("session", {
