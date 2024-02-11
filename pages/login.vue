@@ -26,7 +26,7 @@ const { execute: login } = useFetch("/api/auth/login", {
         Login
       </h1>
       <p class="opacity-50 text-sm">
-        Enter your email and password to login
+        TODO Enter your email and password to login
       </p>
     </div>
 
@@ -38,11 +38,12 @@ const { execute: login } = useFetch("/api/auth/login", {
       <div>
         <FormKit
           type="text"
-          name="email"
-          label="Email"
-          prefix-icon="email"
-          placeholder="email@example.com"
-          validation="required|email"
+          name="username"
+          label="Username"
+          prefix-icon="happy"
+          placeholder="Example"
+          validation="required|length:3,16"
+          help="Will be used when linking your Minecraft account."
         />
 
         <FormKit
@@ -53,12 +54,12 @@ const { execute: login } = useFetch("/api/auth/login", {
           suffix-icon-class="cursor-pointer"
           :placeholder="Array(16).fill('•').join('')"
           label="Password"
-          validation="required|length:6|matches:/[^a-zA-Z]/"
+          validation="required|length:6"
           @suffix-icon-click="togglePasswordVisibility"
         />
       </div>
 
-      <div class="flex flex-col gap-4">
+      <div class="flex flex-col gap-2">
         <div class="-mt-2 w-full flex items-center justify-center">
           <NuxtLink
             to="/register"

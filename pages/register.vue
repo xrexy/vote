@@ -25,7 +25,7 @@ const { execute: signup } = useFetch("/api/auth/signup", {
         Register
       </h1>
       <p class="opacity-50 text-sm">
-        Enter your email, password, and username to register
+        TODO Enter your email and password to register
       </p>
     </div>
 
@@ -37,11 +37,12 @@ const { execute: signup } = useFetch("/api/auth/signup", {
       <div>
         <FormKit
           type="text"
-          name="email"
-          label="Email"
-          prefix-icon="email"
-          placeholder="email@example.com"
-          validation="required|email"
+          name="username"
+          label="Username"
+          prefix-icon="happy"
+          placeholder="Example"
+          validation="required|length:3,16"
+          help="Will be used when linking your Minecraft account."
         />
 
         <FormKit
@@ -55,9 +56,22 @@ const { execute: signup } = useFetch("/api/auth/signup", {
           validation="required|length:6"
           @suffix-icon-click="togglePasswordVisibility"
         />
+
+        <FormKit
+          type="password"
+          name="password_confirm"
+          label="Confirm Password"
+          prefix-icon="password"
+          suffix-icon="eyeClosed"
+          suffix-icon-class="cursor-pointer"
+          :placeholder="Array(16).fill('•').join('')"
+          validation="required|confirm"
+          validation-label="Password confirmation"
+          @suffix-icon-click="togglePasswordVisibility"
+        />
       </div>
 
-      <div class="flex flex-col gap-4">
+      <div class="flex flex-col gap-2">
         <div class="-mt-2 w-full flex items-center justify-center">
           <NuxtLink
             to="/login"
