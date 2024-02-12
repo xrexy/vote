@@ -8,15 +8,15 @@ const body = reactive({
   password: "",
 });
 
-const { execute: login } = useFetch("/api/auth/login", {
-  method: "POST",
-  body,
-  immediate: false,
-  watch: false,
-  onResponse: ({ response }) => {
-    if (response.ok) navigateTo("/");
-  },
-});
+async function login() {
+  $toastFetch("/api/auth/login", {
+    method: "POST",
+    body: JSON.stringify(body),
+    onResponse: ({ response }) => {
+      if (response.ok) navigateTo("/");
+    },
+  });
+}
 </script>
 
 <template>
@@ -34,19 +34,21 @@ const { execute: login } = useFetch("/api/auth/login", {
       type="form"
       form-class="sm:w-[20rem] flex flex-col gap-8 pt-8"
       :actions="false"
+      @submit="login"
     >
       <div>
         <FormKit
+          v-model="body.username"
           type="text"
           name="username"
           label="Username"
           prefix-icon="happy"
-          placeholder="Example"
+          placeholder="username"
           validation="required|length:3,16"
-          help="Will be used when linking your Minecraft account."
         />
 
         <FormKit
+          v-model="body.password"
           type="password"
           name="password"
           prefix-icon="password"

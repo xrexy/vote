@@ -2,7 +2,7 @@
   <NuxtLink to="/studio/new-plugin">
     <Button
       variant="outline"
-      title="Add Server"
+      title="Studio"
       class="px-4 h-full gap-2"
       @click.stop="() => { }"
     >
@@ -11,7 +11,7 @@
         size="24"
         class="text-foreground/50"
       />
-      Add Server
+      Studio
     </Button>
   </NuxtLink>
 </template>

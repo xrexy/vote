@@ -2,6 +2,7 @@ import { Lucia } from "lucia";
 
 interface DatabaseUserAttributes {
 	username: string;
+  uuid: string | undefined;
 }
 
 export const lucia = new Lucia(luciaDbAdapter, {
@@ -10,6 +11,7 @@ export const lucia = new Lucia(luciaDbAdapter, {
   },
   getUserAttributes: (attr) => ({
     username: attr.username,
+    uuid: attr.uuid
   })
 });
 

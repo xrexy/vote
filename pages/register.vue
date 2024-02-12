@@ -1,21 +1,32 @@
 <script lang="ts" setup>
+import { toast } from "vue-sonner";
+
 definePageMeta({
   layout: "auth",
 });
 const body = reactive({
   username: "",
   password: "",
+  confirmPassword: "",
 });
 
-const { execute: signup } = useFetch("/api/auth/signup", {
-  method: "POST",
-  body,
-  immediate: false,
-  watch: false,
-  onResponse: ({ response }) => {
-    if (response.ok) navigateTo("/");
-  },
-});
+async function register() {
+  if (body.password !== body.confirmPassword) {
+    toast.error("Passwords do not match");
+    return;
+  }
+
+  $toastFetch("/api/auth/register", {
+    method: "POST",
+    body: JSON.stringify({
+      username: body.username,
+      password: body.password,
+    }),
+    onResponse: ({ response }) => {
+      if (response.ok) navigateTo("/");
+    },
+  });
+}
 </script>
 
 <template>
@@ -33,19 +44,22 @@ const { execute: signup } = useFetch("/api/auth/signup", {
       type="form"
       form-class="w-[20rem] flex flex-col gap-8 pt-8"
       :actions="false"
+      @submit="register"
     >
       <div>
         <FormKit
+          v-model="body.username"
           type="text"
           name="username"
           label="Username"
           prefix-icon="happy"
           placeholder="Example"
           validation="required|length:3,16"
-          help="Will be used when linking your Minecraft account."
+          help="* Will be used when linking your Minecraft account."
         />
 
         <FormKit
+          v-model="body.password"
           type="password"
           name="password"
           prefix-icon="password"
@@ -58,6 +72,7 @@ const { execute: signup } = useFetch("/api/auth/signup", {
         />
 
         <FormKit
+          v-model="body.confirmPassword"
           type="password"
           name="password_confirm"
           label="Confirm Password"
