@@ -3,7 +3,7 @@
     class="py-8 h-[calc(100dvh-var(--header-height))] w-[75dvw] mx-auto flex flex-row justify-between items-center"
   >
     <div
-      class="w-min h-full pt-4 pr-12 flex flex-col justify-start items-left gap-2 sticky"
+      class="w-min h-full pt-4 pr-12 flex flex-col justify-start items-left gap-y-2 sticky"
     >
       <Button
         v-for="[tab, { icon }] in entries"
@@ -34,12 +34,12 @@
       </Button>
     </div>
 
-    <Card class="flex-1 h-full">
+    <Card class="h-full flex flex-col flex-1">
       <CardHeader>
         <CardTitle>{{ capitalized(currentTab) }}</CardTitle>
         <CardDescription>{{ tabs[currentTab].description }}</CardDescription>
       </CardHeader>
-      <CardContent>
+      <CardContent class="mx-4 flex-1 h-full">
         <PageFragmentSettingsAccount v-if="currentTab === 'account'" />
         <PageFragmentSettingsMinecraft v-else-if="currentTab === 'minecraft'" />
         <PageFragmentSettingsDangerZone
