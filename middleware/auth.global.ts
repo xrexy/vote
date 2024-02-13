@@ -1,24 +1,21 @@
-import type { User } from "lucia";
 
-const protectedRoutes: (RegExp | string)[] = [
-  new RegExp('/studio/.*'),
-]
+const protectedRoutes: (RegExp | string)[] = [new RegExp("/studio/.*")];
 
 export default defineNuxtRouteMiddleware(async (to) => {
-  let user: User | null = null;
-  try {
-    user = await $fetch("/api/auth/me");
-  } catch {
-    console.error("Failed to fetch user");
-  }
+	const user = useUser();
+  // NOTE: has to be useFetch cause $fetch doesn't handle cookies correctly
+	const { data } = await useFetch("/api/auth/me");
+	if (data.value) {
+		user.value = data.value;
+	}
 
-  useUser().value = user;
-
-  if(!user) {
+  if (!user) {
     const next = to.path;
-    const pathIsProtected = protectedRoutes.some(exp => typeof exp === 'string' ? exp === next : exp.test(next));
+    const pathIsProtected = protectedRoutes.some((exp) =>
+      typeof exp === "string" ? exp === next : exp.test(next)
+    );
 
-    if(pathIsProtected) {
+    if (pathIsProtected) {
       return navigateTo("/login");
     }
   }
