@@ -4,14 +4,12 @@ const user = useUser();
 const serverIp = "link.votesite.com";
 
 function copyIP() {
-  navigator.clipboard.writeText(serverIp);
-  toast("Successfully copied IP to clipboard");
+	navigator.clipboard.writeText(serverIp);
+	toast("Successfully copied IP to clipboard");
 }
 
 const value = ref<string[]>([])
 const handleComplete = (e: string[]) => alert(e.join(''))
-
-
 </script>
 
 
@@ -136,7 +134,9 @@ const handleComplete = (e: string[]) => alert(e.join(''))
               please change it from the
             </p>
           </div> -->
-          <p>TODO pin input</p>
+          <div>
+            <!-- TODO Pin input -->
+          </div>
         </PageFragmentSettingsMinecraftLinkSection>
       </div>
     </div>
