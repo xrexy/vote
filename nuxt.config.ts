@@ -27,6 +27,7 @@ export default defineNuxtConfig({
     "@pinia/nuxt",
     "nuxt-icon",
     "@formkit/nuxt",
+    "nuxt-typed-router"
   ],
   devtools: { enabled: true },
   formkit: { autoImport: true },
@@ -49,4 +50,3 @@ export default defineNuxtConfig({
     pin: { secret: process.env.PIN_SECRET },
   },
 });
-
