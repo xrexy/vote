@@ -1,0 +1,98 @@
+export const tagKeys = [
+  'pve',
+  'pvp',
+  'creative',
+  'minigames',
+  'vanilla',
+  'semi_vanilla',
+  'java',
+  'bedrock',
+  'economy',
+  'factions',
+  'skyblock',
+  'survival',
+  'roleplay',
+  'towny',
+  'prison',
+  'hardcore',
+  'whitelist',
+  'rpg',
+  'adventure',
+  'anarchy',
+  'events',
+  'crossplay',
+  'pixelmon',
+  'cobblemon',
+  'parkour',
+  'land_claim',
+  'earth',
+  'lifesteal',
+  'ftb',
+  'survival_games',
+  'lucky_block',
+  'mcmmo',
+  'hunger_games',
+  'skywars',
+  'bedwars',
+  'kitpvp',
+  'op_prison',
+  'op_factions',
+  'op_skyblock',
+  'op_survival',
+] as const;
+
+export type TagKey = typeof tagKeys[number]
+
+export const tags = Object.freeze({
+  'pve': 'PvE',
+  'pvp': 'PvP',
+  'creative': 'Creative',
+  'minigames': 'Minigames',
+  'vanilla': 'Vanilla',
+  'semi_vanilla': 'Semi-Vanilla',
+  'java': 'Java',
+  'bedrock': 'Bedrock',
+  'economy': 'Economy',
+  'factions': 'Factions',
+  'skyblock': 'SkyBlock',
+  'survival': 'Survival',
+  'roleplay': 'Roleplay',
+  'towny': 'Towny',
+  'prison': 'Prison',
+  'hardcore': 'Hardcore',
+  'whitelist': 'Whitelist',
+  'rpg': 'RPG',
+  'adventure': 'Adventure',
+  'anarchy': 'Anarchy',
+  'events': 'Events',
+  'crossplay': 'Crossplay',
+  'pixelmon': 'Pixelmon',
+  'cobblemon': 'Cobblemon',
+  'parkour': 'Parkour',
+  'land_claim': 'Land Claim',
+  'earth': 'Earth',
+  'lifesteal': 'Lifesteal',
+  'ftb': 'FTB',
+  'survival_games': 'Survival Games',
+  'lucky_block': 'Lucky Block',
+  'mcmmo': 'McMMO',
+  'hunger_games': 'Hunger Games',
+  'skywars': 'SkyWars',
+  'bedwars': 'BedWars',
+  'kitpvp': 'KitPvP',
+  'op_prison': 'OP Prison',
+  'op_factions': 'OP Factions',
+  'op_skyblock': 'OP SkyBlock',
+  'op_survival': 'OP Survival',
+} as const satisfies Record<TagKey, string>)
+
+export type Tag = keyof typeof tags
+
+export function getTag<T extends Tag>(tag: T): typeof tags[T] {
+  return tags[tag]
+}
+
+export function getMultipleTags<T extends Tag[]>(tagKeys: T): (typeof tags[T[number]])[] {
+  return tagKeys.map(getTag) as any
+}
+
