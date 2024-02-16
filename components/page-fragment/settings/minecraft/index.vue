@@ -3,13 +3,30 @@ import { toast } from "vue-sonner";
 const user = useUser();
 const serverIp = "link.votesite.com";
 
+const pin = ref<string[]>([])
+const isPinValid = computed(() => pin.value.length === 6 && pin.value.every(x => x.length === 1))
+
 function copyIP() {
-	navigator.clipboard.writeText(serverIp);
-	toast("Successfully copied IP to clipboard");
+  navigator.clipboard.writeText(serverIp);
+  toast("Successfully copied IP to clipboard");
 }
 
-const value = ref<string[]>([])
-const handleComplete = (e: string[]) => alert(e.join(''))
+async function handlePinSubmit() {
+  if (!isPinValid.value) throw new Error("Pin is invalid")
+  try {
+    const { username, uuid } = await $fetch('/api/v1/pin/claim', {
+      method: 'POST',
+      body: JSON.stringify({ pin: pin.value.join('') })
+    })
+    console.log(`Linked as ${username} (${uuid})`)
+
+    toast.success(`Linked account to ${username}`)
+     navigateTo('/')
+  } catch (e) {
+    toast.error('Invalid PIN')
+    console.error(e)
+  }
+}
 </script>
 
 
@@ -115,6 +132,7 @@ const handleComplete = (e: string[]) => alert(e.join(''))
             </li>
           </ul>
         </PageFragmentSettingsMinecraftLinkSection>
+
         <PageFragmentSettingsMinecraftLinkSection
           title="Enter the pin"
           icon="material-symbols:pin"
@@ -134,8 +152,15 @@ const handleComplete = (e: string[]) => alert(e.join(''))
               please change it from the
             </p>
           </div> -->
-          <div>
-            <!-- TODO Pin input -->
+          <div class="space-y-3 pt-2">
+            <PinInput v-model="pin" />
+            <Button
+              :disabled="!isPinValid"
+              variant="emerald"
+              @click="handlePinSubmit"
+            >
+              Submit
+            </Button>
           </div>
         </PageFragmentSettingsMinecraftLinkSection>
       </div>

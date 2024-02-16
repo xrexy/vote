@@ -10,6 +10,7 @@
       />
     </Avatar>
     <div
+      v-if="!user.uuid"
       class="absolute bottom-[2px] right-[2px] z-100 bg-red-500 h-[10px] aspect-square rounded-full animate-ping duration-1000"
     />
   </div>
