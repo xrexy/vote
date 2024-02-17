@@ -102,7 +102,8 @@ const { entries, currentTab, currentTabData, capitalized, dataFor } = useTabs(["
         <CardTitle>{{ capitalized(currentTab) }}</CardTitle>
         <CardDescription>{{ currentTabData.description }}</CardDescription>
       </CardHeader>
-      <CardContent class="mx-4 flex-1 h-full">
+      <CardContent class="scroll-smooth mb-6 pb-0 flex-1 h-full overflow-scroll">
+        <!-- <ScrollArea class="max-h-full"> -->
         <PageFragmentStudioDashboard v-if="currentTab === 'dashboard'" />
         <div
           v-else
@@ -110,6 +111,7 @@ const { entries, currentTab, currentTabData, capitalized, dataFor } = useTabs(["
         >
           Internal Error - Please let an administrator know about this asap.
         </div>
+        <!-- </ScrollArea> -->
       </CardContent>
     </Card>
   </div>

@@ -3,11 +3,11 @@
     <DropdownMenuTrigger>
       <UserAvatar :user="user" />
     </DropdownMenuTrigger>
-    <DropdownMenuContent class="mt-2">
+    <DropdownMenuContent class="min-w-36 mt-2">
       <!--Account-->
       <DropdownMenuLabel>
         <p class="font-bold">
-          My Account
+          {{ user.username }}
         </p>
       </DropdownMenuLabel>
       <DropdownMenuSeparator />
@@ -22,7 +22,7 @@
         <DropdownMenuSeparator />
       </template>
 
-      <DropdownMenuGroup>
+      <DropdownMenuGroup class="flex flex-col gap-1">
         <UserAvatarDropdownItem
           to="/"
           icon="mdi:user"

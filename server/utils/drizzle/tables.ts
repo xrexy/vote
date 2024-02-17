@@ -1,6 +1,6 @@
 import { pgTable, text, timestamp, json, boolean } from "drizzle-orm/pg-core";
 
-import { tags, countries } from "../../data";
+import { type Tag, countries } from "../../data";
 
 export const userTable = pgTable("user", {
   id: text("id").primaryKey(),
@@ -28,12 +28,13 @@ export const serverTable = pgTable("server", {
     .notNull(),
 
   title: text("title").notNull(),
-  ip: json('ip').$type<{ java: string; bedrock?: string }>().notNull(),
+  ip: json('ip').$type<{ java: string; bedrock?: { address: string, port: number; } }>().notNull(),
   version: text("version").notNull(),
   description: text("description").notNull(),
 
-  // TODO make tags.json and add an actual type
-  tags: json("tags").$type<(keyof typeof tags)[]>().notNull(),
+  tags: json("tags").$type<Tag[]>().notNull(),
+  country: text("country", { enum: countries }).notNull(),
+  verified: boolean("verified").notNull().default(false),
   socials: json("socials").$type<Partial<{
     website: string;
     youtube: string;
@@ -43,11 +44,6 @@ export const serverTable = pgTable("server", {
     tiktok: string;
     twitter: string;
   }>>().notNull(),
-  // TODO add an actual type
-  country: text("country", {
-    enum: countries
-  }).notNull(),
-  verified: boolean("verified").notNull().default(false)
 })
 
 export const dbTables = {

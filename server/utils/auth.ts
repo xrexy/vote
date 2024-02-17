@@ -11,7 +11,8 @@ export const lucia = new Lucia(luciaDbAdapter, {
   },
   getUserAttributes: (attr) => ({
     username: attr.username,
-    uuid: attr.uuid
+    uuid: attr.uuid,
+    isLinked: !!attr.uuid
   })
 });
 

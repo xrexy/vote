@@ -1,7 +1,4 @@
 <script setup lang="ts">
-import type { LocationQueryValue } from "vue-router";
-
-
 const { entries, currentTab, currentTabData, capitalized, dataFor } = useTabs(["account", "minecraft", "danger-zone"] as const, {
   account: {
     icon: "solar:user-bold",

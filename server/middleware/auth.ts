@@ -37,6 +37,7 @@ export default defineEventHandler(async (event) => {
       lucia.createBlankSessionCookie().serialize()
     );
   }
+  
   event.context.user = user;
   event.context.session = session;
 });

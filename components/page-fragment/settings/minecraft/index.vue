@@ -21,7 +21,7 @@ async function handlePinSubmit() {
     console.log(`Linked as ${username} (${uuid})`)
 
     toast.success(`Linked account to ${username}`)
-     navigateTo('/')
+    navigateTo('/')
   } catch (e) {
     toast.error('Invalid PIN')
     console.error(e)
@@ -36,18 +36,14 @@ async function handlePinSubmit() {
     v-else
     class="h-full pb-8"
   >
-    <h1
-      v-if="user.uuid"
-      class="text-lg font-bold"
-    >
-      Link Account
-    </h1>
-    <p
-      v-if="user.uuid"
-      class="text-emerald-400"
-    >
-      Account linked to <b>{{ user.username }}</b>
-    </p>
+    <template v-if="user.isLinked">
+      <h1 class="text-lg font-bold">
+        Link Account
+      </h1>
+      <p class="text-emerald-400">
+        Account linked to <b>{{ user.username }}</b>
+      </p>
+    </template>
 
     <div
       v-else
