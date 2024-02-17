@@ -27,6 +27,8 @@
           :placeholder="server.title"
           :help="`Type the server title to confirm action.`"
           @keydown.enter="() => {
+            if (confirmationInput !== server.title) return
+            
             dialogIsOpen = false
             handleDelete()
           }"
