@@ -1,7 +1,5 @@
 import { generateId } from "lucia";
-import { Argon2id } from "oslo/password";
-
-// import { DrizzleError } from "drizzle-orm/";
+// import { Argon2id } from "oslo/password";
 
 import z from "zod";
 
@@ -22,7 +20,8 @@ export default eventHandler(async (event) => {
   }
 
   const { password, username } = v.data;
-  const hashedPassword = await new Argon2id().hash(password);
+  // const hashedPassword = await new Argon2id().hash(password);
+  const hashedPassword = "hashedPassword";
   const userId = generateId(15);
   try {
     await db.insert(userTable).values({
