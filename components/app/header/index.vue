@@ -1,7 +1,6 @@
 <template>
   <header
-    class="relative border-b border-border flex flex-col md:flex-row justify-between items-center h-header md:py-4 md:px-8 z-10"
-  >
+    class="relative border-b border-border flex flex-col md:flex-row justify-between items-center h-header md:py-4 md:px-8 z-10">
     <div class="block md:hidden">
       <ClientOnly>
         <DropdownMenu>
@@ -27,20 +26,24 @@
         <AppLogo />
       </NuxtLink>
 
-      <NuxtLink
-        v-if="isStudio"
-        class="font-black font-mono text-lg select-none"
-        to="/studio"
-      >
+      <NuxtLink v-if="isStudio" class="font-black font-mono text-lg select-none" to="/studio">
         Studio
       </NuxtLink>
     </div>
 
     <AppHeaderSearch
-      class="opacity-[0.001] pointer-events-none md:pointer-events-auto md:opacity-100 absolute left-[50%] -translate-x-[50%]"
-    />
+      class="opacity-[0.001] pointer-events-none md:pointer-events-auto md:opacity-100 absolute left-[50%] -translate-x-[50%]" />
 
-    <UserAvatarDropdown />
+    <div class="flex items-center gap-4">
+      <NuxtLink to="/studio/server/add">
+        <Button variant="outline" class="flex gap-1 items-center">
+          <Icon name="material-symbols:add" size="1.2rem" />
+          Add Server
+        </Button>
+      </NuxtLink>
+
+      <UserAvatarDropdown />
+    </div>
   </header>
 </template>
 
