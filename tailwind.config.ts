@@ -20,10 +20,9 @@ export default <Partial<Config>>{
         'header': 'var(--header-height)',
       },
       fontFamily: {
-        // managed by @nuxtjs/google-fonts"
-        sans: ['DM Sans', 'sans-serif'],
-        mono: ['DM Mono', 'monospace'],
-        serif: ['DM Serif Display', 'serif'],
+        sans: 'DM Sans',
+        mono: 'DM Mono',
+        serif: 'DM Serif Display',
       },
       boxShadow: {
         'glow-emerald': '0 0px 40px 15px rgba(16,185,129,0.15)'
