@@ -18,6 +18,7 @@ export default <Partial<Config>>{
     extend: {
       height: {
         'header': 'var(--header-height)',
+        'true-height': 'calc(100vh - var(--header-height))',
       },
       fontFamily: {
         sans: 'DM Sans',
