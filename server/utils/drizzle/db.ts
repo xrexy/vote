@@ -11,4 +11,7 @@ pool.connect();
 export const db = drizzle(pool, {
   schema: dbTables
 });
+
+import { sessionTable } from './tables'
+
 export const luciaDbAdapter = new DrizzlePostgreSQLAdapter(db, sessionTable, userTable);

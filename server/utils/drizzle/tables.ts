@@ -11,7 +11,7 @@ export const userTable = pgTable("user", {
 });
 
 export const sessionTable = pgTable("session", {
-  id: text("id").primaryKey(),
+  id: text("id").primaryKey().notNull(),
   userId: text("user_id")
     .notNull()
     .references(() => userTable.id),
@@ -44,6 +44,9 @@ export const serverTable = pgTable("server", {
     tiktok: string;
     twitter: string;
   }>>().notNull(),
+
+  createdAt: timestamp("createdAt", { mode: 'date' }).defaultNow(),
+  updatedAt: timestamp("updatedAt", { mode: 'date' }).defaultNow()
 })
 
 export const dbTables = {

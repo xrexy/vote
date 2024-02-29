@@ -1,9 +1,13 @@
-export default defineNuxtRouteMiddleware(async (to) => {
-  const user = useUser();
-  if(!user.value) return;
+export default defineNuxtRouteMiddleware(async () => {
+  const serverStore = useServers()
 
-  const serversStore = useUserServers();
-  const res = await useRequestFetch()("/api/v1/server/user-owned");
-
-  serversStore.value = res.servers;
-});
+  try {
+    const { all } = await useRequestFetch()("/api/v1/server/all", {
+      method: 'get',
+    })
+    serverStore.value = all
+  } catch (e) {
+    console.error(e)
+    serverStore.value = []
+  }
+})

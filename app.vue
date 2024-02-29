@@ -1,12 +1,8 @@
 <template>
   <main>
-    <Sonner
-      position="bottom-center"
-      theme="dark"
-      rich-colors
-      :duration="2500"
-    />
-    
+    <NuxtLoadingIndicator :color="`repeating-linear-gradient(to right,${emerald['500']} 0%,#34cdfe 50%,#0047e1 100%)`" />
+    <Sonner position="bottom-center" theme="dark" rich-colors :duration="2500" />
+
     <AppHeader />
 
     <NuxtLayout>
@@ -16,7 +12,9 @@
 </template>
 
 <script setup lang="ts">
-useHead({ htmlAttrs: { class: 'dark' }})
+import { emerald } from 'tailwindcss/colors'
+
+useHead({ htmlAttrs: { class: 'dark' } })
 </script>
 
 <style>
