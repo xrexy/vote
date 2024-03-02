@@ -60,17 +60,22 @@
           <h3 class="font-semibold">
             MOTD:
           </h3>
-          <div
-            v-if="query"
-            class="font-mono border border-border rounded-md text-sm p-1.5"
-          >
-            <div
-              v-for="line, k in query.motd.html"
-              :key="k"
-              class="tracking-wider whitespace-pre"
-            >
-              <span v-html="line" />
-            </div>
+          <ServerMotdDisplay :query="query" />
+
+          <h3 class="font-semibold mt-1">
+            Server Stats:
+          </h3>
+          <div class="flex flex-col items-start border divide-y-2 border-border rounded-md *:p-1">
+            <p class="flex items-center gap-1 p-1">
+              <Icon name="fluent:plug-disconnected-48-filled" />
+              <span>Status</span>
+              <span class="bg-emerald-500 text-sm px-1 rounded-xl">Online</span>
+            </p>
+            <p class="flex items-center gap-1">
+              <Icon name="bxs:upvote" />
+              <span>Vote(s)</span>
+              <span>231</span>
+            </p>
           </div>
         </div>
       </div>

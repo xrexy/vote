@@ -1,11 +1,8 @@
 <template>
-  <div
-    class="grid place-items-center rounded-full relative w-[48px] h-[48px] p-[2px] border border-border"
-  >
+  <div class="grid place-items-center rounded-full relative w-[48px] h-[48px] p-[2px] border border-border">
     <Avatar class="border border-border w-full h-full">
       <AvatarImage
-        :src="`https://crafatar.com/avatars/${
-          user.uuid || 'eb351c77-3f4c-40e2-8f80-270cbb7cce24'
+        :src="`https://crafatar.com/avatars/${user.uuid || 'eb351c77-3f4c-40e2-8f80-270cbb7cce24'
         }`"
       />
     </Avatar>
@@ -20,4 +17,3 @@
 import type { User } from "lucia";
 defineProps<{ user: User }>();
 </script>
-
