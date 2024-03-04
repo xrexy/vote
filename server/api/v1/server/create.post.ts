@@ -29,6 +29,7 @@ import { countries, tagKeys } from "~/server/data";
 }
 */
 
+
 const serverSchema = z.object({
   title: z.string().min(8),
   ip: z.object({
@@ -58,6 +59,11 @@ const serverSchema = z.object({
   country: z.enum(countries)
 })
 
+const schema = z.object({
+  server: serverSchema,
+  email: z.string().email()
+})
+
 export default eventHandler(async (event) => {
   const user = event.context.user;
   if (!user) {
@@ -69,23 +75,36 @@ export default eventHandler(async (event) => {
 
   const body = await readBody(event)
 
-  const valid = serverSchema.safeParse(body)
+  const valid = schema.safeParse(body)
   if (!valid.success) {
     throw createError({
-      message: "Invalid payload",
+      message: valid.error.errors[0].message,
       statusCode: 400
     })
   }
-  const { data } = valid;
+  const { data: { server, email } } = valid;
 
   try {
     const id = generateId(15)
-    console.log(data);
+
+    const verificationRes = await createAndSetVerificationCode(event.context.redis, id)
+    if (verificationRes.success === false) {
+      throw createError({
+        message: "Failed to create verification code",
+        statusCode: 500
+      })
+    }
+
+    await sendVerificationEmail(event.context.resend, email, verificationRes.code, 'new', { serverTitle: server.title })
+
     await db.insert(serverTable).values({
-      ...data,
+      ...server,
+      verified: false,
       id,
       creatorId: user.id
     })
+
+    return { id }
   } catch (e) {
     console.log(e)
   }

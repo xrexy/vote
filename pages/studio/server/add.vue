@@ -1,31 +1,32 @@
 <script setup lang="ts">
 function onSubmit(body: any) {
-  const payload = {
-    title: body.title,
-    ip: {
-      java: body.ip,
-      bedrock: {
-        address: "bedrock.myserver.com",
-        port: 19132
-      }
-    },
-    version: "2",
-    description: "My server is the best server. Join now! My server is the best server. Join now!",
-    tags: ["survival", "creative"],
-    socials: {
-      website: "https://myserver.com",
-      discord: "https://discord.gg/myserver",
-      instagram: "https://instagram.com/myserver",
-      youtube: "https://youtube.com/myserver",
-      tiktok: "https://tiktok.com/myserver",
-      facebook: "https://facebook.com/myserver",
-      twitter: "https://twitter.com/myserver"
-    },
-    country: "US"
-  }
-
   $toastFetch("/api/v1/server/create", {
-    body: payload,
+    body: {
+      server: {
+        title: body.title,
+        ip: {
+          java: body.ip,
+          bedrock: {
+            address: "bedrock.myserver.com",
+            port: 19132
+          }
+        },
+        version: "2",
+        description: "My server is the best server. Join now! My server is the best server. Join now!",
+        tags: ["survival", "creative"],
+        socials: {
+          website: "https://myserver.com",
+          discord: "https://discord.gg/myserver",
+          instagram: "https://instagram.com/myserver",
+          youtube: "https://youtube.com/myserver",
+          tiktok: "https://tiktok.com/myserver",
+          facebook: "https://facebook.com/myserver",
+          twitter: "https://twitter.com/myserver"
+        },
+        country: "US"
+      },
+      email: body.email,
+    },
     method: 'POST'
   })
 }
@@ -61,6 +62,14 @@ function onSubmit(body: any) {
               placeholder="play.example.com"
               label="Java IP"
               validation="required"
+            />
+
+            <FormKit
+              type="email"
+              name="email"
+              label="Email"
+              validation="required"
+              help="* We will send the verification code to this email"
             />
           </div>
 

@@ -35,6 +35,7 @@ export const serverTable = pgTable("server", {
   tags: json("tags").$type<Tag[]>().notNull(),
   country: text("country", { enum: countries }).notNull(),
   verified: boolean("verified").notNull().default(false),
+  
   socials: json("socials").$type<Partial<{
     website: string;
     youtube: string;

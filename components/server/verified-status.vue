@@ -8,13 +8,13 @@
           </p>
           <Icon
             :class="data.iconColor"
-            size="1.5rem"
+            size="1.25rem"
             :name="data.icon"
           />
         </div>
-      </TooltipTrigger>
+      </TooltipTrigger>  
       <TooltipContent>
-        <div>
+        <div class="font-bold div" asd="">
           <p class="text-lg">
             {{ data.tooltipContent }}
           </p>

@@ -1,7 +1,9 @@
 const REQUIRED_ENV_VARIABLES = [
-  "REDIS_URL",
   "DB_CONNECTION_STRING",
   "PIN_SECRET",
+  "RESEND_API_KEY",
+  "UPSTASH_REDIS_REST_TOKEN",
+  "UPSTASH_REDIS_REST_URL"
 ] as const;
 const missingEnvVariables = REQUIRED_ENV_VARIABLES.filter(
   (env) => !process.env[env]
@@ -37,8 +39,9 @@ export default defineNuxtConfig({
   },
   tailwindcss: { viewer: false },
   runtimeConfig: {
-    redis: { url: process.env.REDIS_URL },
+    redis: { token: process.env.UPSTASH_REDIS_REST_TOKEN!, url: process.env.UPSTASH_REDIS_REST_URL! },
     db: { connectionString: process.env.DB_CONNECTION_STRING },
     pin: { secret: process.env.PIN_SECRET },
+    resend: { apiKey: process.env.RESEND_API_KEY },
   },
 });

@@ -13,9 +13,15 @@
       <div class="p-4 pt-1">
         <!-- Title -->
         <div class="flex items-center justify-between w-full ">
-          <h3 class="text-lg font-semibold">
-            {{ server.title }}
-          </h3>
+          <div class="flex gap-1">
+            <ServerVerifiedStatus :verified="server.verified" />
+            <NuxtLink
+              :to="`/studio/manage/${server.id}`"
+              class="text-lg font-semibold"
+            >
+              {{ server.title }}
+            </NuxtLink>
+          </div>
 
           <div class="flex items-center gap-2">
             <div class="bg-emerald-400 h-2 aspect-square rounded-full animate-pulse" />

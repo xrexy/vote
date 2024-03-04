@@ -4,10 +4,10 @@
       <!--Server Title | Verified-->
       <div class="flex justify-between w-full border-b border-border/70 p-4">
         <div class="flex items-center gap-2">
-          <h1 class="text-3xl font-bold">
+          <h1 class="text-2xl font-bold">
             {{ server.title }}
           </h1>
-          <ServerVerifiedStatus :verified="server.verified" />
+          <!-- <ServerVerifiedStatus :verified="server.verified" /> -->
         </div>
 
         <div class="flex gap-2 items-center">
@@ -65,17 +65,26 @@
           <h3 class="font-semibold mt-1">
             Server Stats:
           </h3>
-          <div class="flex flex-col items-start border divide-y-2 border-border rounded-md *:p-1">
-            <p class="flex items-center gap-1 p-1">
-              <Icon name="fluent:plug-disconnected-48-filled" />
-              <span>Status</span>
-              <span class="bg-emerald-500 text-sm px-1 rounded-xl">Online</span>
-            </p>
-            <p class="flex items-center gap-1">
-              <Icon name="bxs:upvote" />
-              <span>Vote(s)</span>
-              <span>231</span>
-            </p>
+          <div class="flex flex-col items-start border divide-y-0 border-border rounded-md p-2">
+            <!-- TODO add value classes -->
+            <ServerStatistic
+              label="Status"
+              value="Online"
+              co
+              icon="fluent:plug-disconnected-48-filled"
+            />
+
+            <ServerStatistic
+              label="Votes"
+              value="231"
+              icon="bxs:upvote"
+            />
+
+            <ServerStatistic
+              label="Rank"
+              value="#1"
+              icon="icon-park-outline:ranking"
+            />
           </div>
         </div>
       </div>
